@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Urban Store — Contemporary women's watches for everyday elegance, designed with a modern US and UK audience in mind.">
+  <title>Urban Store | Women's Luxury Watches</title>
+  <link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+  <a class="logo" href="index.html">Urban Store</a>
+  <nav>
+    <a href="#product">Shop</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#suggested">Discover More</a>
+    <a href="#footer">Info</a>
+  </nav>
+</header>
+
+<main>
+<section class="product-section" id="product">
+  <div class="product-visuals">
+    <div class="main-image-container">
+  <img id="mainImage" src="assets/product-images/luna-rose-watch-1.png" alt="Aurora Rose Gold Timepiece">
+</div>
+<div class="product-thumbnails">
+  <button class="thumbnail active"><img src="assets/product-images/luna-rose-watch-1.png" alt="Aurora Rose Gold Timepiece front view"></button>
+  <button class="thumbnail"><img src="assets/product-images/luna-rose-watch-2.png" alt="Aurora Rose Gold Timepiece angled view"></button>
+  <button class="thumbnail"><img src="assets/product-images/luna-rose-watch-3.png" alt="Aurora Rose Gold Timepiece close-up view"></button>
+</div>
+  </div>
+
+  <div class="product-details">
+    <div class="eyebrow">Women's Luxury Collection • Elegant & Timeless</div>
+    <h1>Aurora Rose Gold Timepiece</h1>
+    <div class="rating"><span>★★★★★</span> <small>4.9 · 128 customer ratings</small></div>
+    <div class="price">$89.00 <del>$129.00</del></div>
+    <p class="description">Discover the perfect blend of modern sophistication and classic elegance with the Aurora Rose Gold Timepiece. Featuring a beautifully crafted rose gold mesh bracelet, a radiant matching case, and a minimalist dial, this watch is designed specifically for women who appreciate understated luxury. Effortlessly transitions from the boardroom to evening galas.</p>
+
+    <div class="option-group">
+      <strong>Finish: <span id="selectedColor">Rose Gold</span></strong>
+      <div class="colors">
+        <button class="color-btn active" data-color="Rose Gold" aria-label="Rose Gold finish" style="background-color: #b76e79; border: 1px solid #ddd;"></button>
+        <button class="color-btn" data-color="Silver" aria-label="Silver finish" style="background-color: #e0e0e0; border: 1px solid #ddd;"></button>
+        <button class="color-btn" data-color="Champagne" aria-label="Champagne finish" style="background-color: #f7e7ce; border: 1px solid #ddd;"></button>
+      </div>
+    </div>
+
+    <div class="option-group">
+      <div class="quantity-header">
+        <strong>Quantity</strong>
+        <div class="stock-status in-stock"><span class="dot"></span> In Stock</div>
+      </div>
+      <div class="quantity-selector"><button id="minus">−</button><span id="qty">1</span><button id="plus">+</button></div>
+    </div>
+
+    <button class="checkout-btn" id="checkout">Proceed to Checkout</button>
+  </div>
+</section>
+
+<section class="accordion-section reveal-on-scroll">
+  <div class="accordion-container">
+    <div class="accordion">
+      <details class="accordion-item" open>
+        <summary>Product Features <span class="icon">+</span></summary>
+        <div class="accordion-content">
+          <p>A beautifully polished everyday timepiece created around clean lines, comfortable wear, and elegant styling.</p>
+          <ul>
+            <li>Minimalist three-hand dial design with rose gold accents</li>
+            <li>Premium adjustable rose gold mesh bracelet</li>
+            <li>Radiant rose-gold plated stainless steel case</li>
+            <li>Contemporary, unbranded boutique styling</li>
+          </ul>
+        </div>
+      </details>
+      <details class="accordion-item">
+        <summary>Dimensions & Fit <span class="icon">+</span></summary>
+        <div class="accordion-content">
+          <p>A balanced case profile designed to sit perfectly on delicate wrists.</p>
+          <ul>
+            <li>Case diameter: 36mm</li>
+            <li>Strap width: 16mm</li>
+            <li>Adjustable buckle for a customized fit</li>
+          </ul>
+        </div>
+      </details>
+      <details class="accordion-item">
+        <summary>Shipping & Returns <span class="icon">+</span></summary>
+        <div class="accordion-content">
+          <p>Complimentary express shipping on all orders. Please review our <a href="returns.html" style="text-decoration:underline;color:var(--text-main);">return policy</a> for details.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="reviews-section reveal-on-scroll" id="reviews">
+  <div class="reviews-container">
+    <div class="reviews-summary">
+      <span>Community</span>
+      <h2>Loved for Everyday Elegance</h2>
+      <div class="rating-score">
+        <strong>4.9</strong>
+        <div class="large-stars">★★★★★</div>
+        <p>Based on 128 customer ratings</p>
+      </div>
+      <div class="rating-bars">
+        <div class="rating-row"><span>5</span><div class="bar-bg"><div class="bar-fill" style="width:92%"></div></div><small>118</small></div>
+        <div class="rating-row"><span>4</span><div class="bar-bg"><div class="bar-fill" style="width:8%"></div></div><small>10</small></div>
+        <div class="rating-row"><span>3</span><div class="bar-bg"><div class="bar-fill" style="width:4%"></div></div><small>4</small></div>
+        <div class="rating-row"><span>2</span><div class="bar-bg"><div class="bar-fill" style="width:0%"></div></div><small>0</small></div>
+        <div class="rating-row"><span>1</span><div class="bar-bg"><div class="bar-fill" style="width:0%"></div></div><small>0</small></div>
+      </div>
+    </div>
+
+    <div class="review-list">
+      <article class="review-card">
+        <div class="review-top"><div class="review-author-info"><strong>Isabella C.</strong><small>Verified Buyer</small></div><div class="review-stars">★★★★★</div></div>
+        <p class="review-text">“Absolutely stunning! The rose gold finish is gorgeous, and the mesh bracelet feels incredibly luxurious. I get compliments every time I wear it.”</p>
+      </article>
+      <article class="review-card">
+        <div class="review-top"><div class="review-author-info"><strong>Sophia T.</strong><small>Verified Buyer</small></div><div class="review-stars">★★★★★</div></div>
+        <p class="review-text">“The perfect everyday watch for women. It's delicate but makes a statement. The minimalist face is so chic and elegant.”</p>
+      </article>
+      <article class="review-card">
+        <div class="review-top"><div class="review-author-info"><strong>Elena M.</strong><small>Verified Buyer</small></div><div class="review-stars">★★★★☆</div></div>
+        <p class="review-text">“I bought this as a gift for myself and I couldn't be happier. The quality is exceptional and it goes beautifully with all my jewelry.”</p>
+      </article>
+      <article class="review-card">
+        <div class="review-top"><div class="review-author-info"><strong>Mia R.</strong><small>Verified Buyer</small></div><div class="review-stars">★★★★★</div></div>
+        <p class="review-text">“Finally, a watch that understands women's fashion! It's lightweight, beautifully proportioned, and the rose gold tone is exactly what I wanted.”</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="suggested reveal-on-scroll" id="suggested">
+  <div class="section-heading"><span>Explore More</span><h2>Curated For You</h2></div>
+  <div class="slider-wrap">
+    <button class="slider-btn prev" id="prev">‹</button>
+    <div class="slider" id="slider">
+      <article class="slide"><img src="assets/product-images/Rose-gold.png" alt="Luna Rose Watch"><div><h3>Luna Rose Watch</h3><p>Classic rose gold finish</p><b>$95.00</b></div></article>
+      <article class="slide"><img src="assets/product-images/pink.png" alt="Lavelle Pearl Watch"><div><h3>Lavelle Pearl Watch</h3><p>Soft pink leather strap</p><b>$85.00</b></div></article>
+      <article class="slide"><img src="assets/product-images/Levender.png" alt="Avery Mist Watch"><div><h3>Avery Mist Watch</h3><p>Soft lavender vegan leather</p><b>$79.00</b></div></article>
+      <article class="slide"><img src="assets/product-images/unique.png" alt="Elara Mocha Watch"><div><h3>Elara Mocha Watch</h3><p>Modern luxury design</p><b>$110.00</b></div></article>
+      <article class="slide"><img src="assets/product-images/Celeste Ivory Watch.png" alt="Celeste Ivory Watch"><div><h3>Celeste Ivory Watch</h3><p>Elegant ivory finish</p><b>$89.00</b></div></article>
+    </div>
+    <button class="slider-btn next" id="next">›</button>
+  </div>
+</section>
+</main>
+
+<footer id="footer">
+  <div class="footer-grid">
+    <div><div class="footer-logo">Urban Store</div><p>Curating contemporary women's watches with clean lines, versatile finishes and an understated boutique feel.</p></div>
+    <div><h4>Information</h4><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms & Conditions</a><a href="returns.html">Return & Refund Policy</a></div>
+    <div><h4>Customer Care</h4><a href="#product">Shop Watches</a><a href="#suggested">Collections</a><button class="footer-contact" id="contactOpen">Contact Us</button></div>
+    <div><h4>Contact Us</h4><p style="color: rgba(255,255,255,0.7); line-height:1.8; margin:0; font-size:.95rem;">2362 Vernon Street<br>Fullerton, CA 93632<br>Phone: +1 (800) 555-0199</p></div>
+  </div>
+  <div class="copyright">© 2026 Urban Store. All rights reserved.</div>
+</footer>
+
+<div class="modal" id="contactModal">
+  <div class="modal-card contact-modal-card">
+    <button class="modal-x" id="contactClose" aria-label="Close">×</button>
+    <div id="contactFormView">
+      <div class="contact-header-text"><div class="contact-title-row"><div class="modal-icon">✉</div><h2>Get in Touch</h2></div><p>Have a question about a watch or styling? We're here to help.</p></div>
+      <div class="contact-split">
+        <div class="contact-info">
+          <h3>Urban Store</h3>
+          <p>2362 Vernon Street<br>Fullerton, CA 93632</p>
+          <h3>Contact</h3>
+          <p>Email: support@urbanstore.com<br>Phone: +1 (800) 555-0199</p>
+          <h3>Hours</h3>
+          <p>Mon - Sat: 10:00 AM - 8:00 PM<br>Sunday: 12:00 PM - 6:00 PM</p>
+        </div>
+        <div class="contact-form-col">
+          <form id="contactForm" novalidate>
+            <label>Full Name <span>*</span></label><input type="text" id="contactName" placeholder="Your full name" required><div class="field-error" id="nameError"></div>
+            <label>Email Address <span>*</span></label><input type="email" id="contactEmail" placeholder="you@example.com" required><div class="field-error" id="emailError"></div>
+            <label>Subject <span>*</span></label><input type="text" id="contactSubject" placeholder="How can we help?" required><div class="field-error" id="subjectError"></div>
+            <label>Message <span>*</span></label><textarea id="contactMessage" rows="4" placeholder="Write your message..." required></textarea><div class="field-error" id="messageError"></div>
+            <button type="submit" class="modal-action" style="width:100%">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="contact-success" id="contactSuccess">
+      <div class="modal-icon">✓</div><h2>Message Sent Successfully!</h2><p>Thank you for reaching out to Urban Store. Our customer support team will reply shortly.</p><button class="modal-action" id="successClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="modal-x" id="closeModal" aria-label="Close">×</button>
+    <div class="modal-icon" style="color:var(--text-main);">🔒</div>
+    <h2 style="margin: .5rem 0 1rem; color:var(--text-main); font-weight:500;">Checkout Unavailable</h2>
+    <p>Our secure checkout is undergoing scheduled maintenance and is currently unavailable. Please check back later to complete your purchase.</p>
+  </div>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>
